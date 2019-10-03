@@ -15,15 +15,33 @@ def test_backups(host):
     assert backupDir.is_directory
     assert oct(backupDir.mode) == "0o750"
 
-    # Don't use host.sudo() since it doesn't simulate sudo -i
-    restorePath = "/tmp/test-restore"
+    # Create the database and insert data into it
+    testString = "fddsafds test string fddadsfd"
+    with host.sudo("postgres"):
+        host.run("psql -c 'create database test'")
+        host.run(
+            "psql -c 'create table t1(c1 text null)' test"
+        )
+        host.run((
+            "psql -c \"insert into t1(c1) values('" +
+            testString +
+            "')\" test"
+        ))
+
+    # Check if duply can backup and restore into a file
+    # Don't use host.sudo() since it doesn't do sudo -i
+    restorePath = "/tmp/test-restore.sql"
+    # Full backup
+    assert host.run_expect([0], "sudo -i -u postgres duply postgresql backup")
+    # Incremental backup
     assert host.run_expect([0], "sudo -i -u postgres duply postgresql backup")
     assert host.run_expect([0], (
         "sudo -i -u postgres duply postgresql restore " +
         restorePath
     ))
 
+    # Check if duply restore is OK
     restoreFile = host.file(restorePath)
     assert restoreFile.exists
     assert restoreFile.is_file
-    assert restoreFile.contains("PostgreSQL database dump complete")
+    assert restoreFile.contains(testString)
