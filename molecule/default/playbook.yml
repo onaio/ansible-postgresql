@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-postgresql
+      postgresql_backup_gpg_private_key: "priv.asc"
+      postgresql_backup_gpg_public_key: "pub.asc"
+      postgresql_backup_gpg_trust_file: "trust-ultimate.txt"
+      postgresql_backup_database: "postgres"
+      # postgresql_backup_gpg_key_id: "09E3F82FB4BA5BBB32DC177774D3437A53329157"
+      postgresql_backup_gpg_key_id: "53329157"
+      postgresql_backup_gpg_pass: "ansibleisawesome"
