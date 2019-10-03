@@ -1,2 +1,2 @@
 ---
-# vars file for postgresql
+postgresql_backup_target: "{{ postgresql_backup_target_protocol }}://{{ postgresql_backup_target_path }}"

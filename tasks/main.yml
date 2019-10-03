@@ -1,2 +1,9 @@
 ---
-# tasks file for postgresql
+- name: Make sure the backup directory exists
+  file:
+    state: directory
+    path: "{{ postgresql_backup_target_path }}"
+    owner: "{{ postgresql_backup_system_user }}"
+    group: "{{ postgresql_backup_system_group }}"
+    mode: 0750
+  when: postgresql_backup_enabled and postgresql_backup_target_protocol == "file"
