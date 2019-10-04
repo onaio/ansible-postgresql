@@ -4,9 +4,14 @@ galaxy_info:
   company: Ona Systems Inc
   license: Apache v2
   min_ansible_version: 1.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 16.04
+        - 18.04
   galaxy_tags:
     - postgresql
-    - postgresql-backup
+    - backup
 
 dependencies:
   - role: ANXS.postgresql
@@ -18,11 +23,11 @@ dependencies:
       gpg_private_key: "{{ postgresql_backup_gpg_private_key }}"
       gpg_public_key: "{{ postgresql_backup_gpg_public_key }}"
       gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
-    when: postgresql_backup_enabled == true and postgresql_backup_import_gpg_keys == true
+    when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
 
   - role: Stouts.backup
     vars:
       backup_cron_filename: "{{ postgresql_backup_cron_filename }}"
       backup_enabled: "{{ postgresql_backup_enabled }}"
       backup_profiles: "{{ postgresql_backup_profiles }}"
-    when: postgresql_backup_enabled == true
+    when: postgresql_backup_enabled

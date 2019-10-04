@@ -1,0 +1,6 @@
+---
+- role: ANXS.postgresql
+- name: onaio.gpg-import
+  src: https://github.com/onaio/ansible-gpg-import.git
+  scm: git
+- role: Stouts.backup
