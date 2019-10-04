@@ -20,7 +20,19 @@ Dependencies
 
 - ANXS.postgresql
 - onaio.gpg-import
-- Stouts.backup 
+- Stouts.backup
+
+Testing
+-------
+
+You can test the role locally using Molecule by following these steps:
+
+```sh
+pip install molecule docker-py
+molecule test
+```
+
+> Note: Please make sure the repository on your host is named exactly `ansible-postgresql`.
 
 License
 -------
