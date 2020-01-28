@@ -21,6 +21,7 @@ dependencies:
       gpg_user: "{{ postgresql_backup_system_user }}"
       gpg_group: "{{ postgresql_backup_system_group }}"
       gpg_private_key: "{{ postgresql_backup_gpg_private_key }}"
+      gpg_private_key_passphrase: "{{ postgresql_backup_gpg_pass }}"
       gpg_public_key: "{{ postgresql_backup_gpg_public_key }}"
       gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
     when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
