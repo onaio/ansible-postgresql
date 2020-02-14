@@ -22,6 +22,7 @@ postgresql_backup_gpg_pass:
 postgresql_backup_target_protocol: "file"
 postgresql_backup_target_path: "/backups/postgresql"
 postgresql_backup_cron_filename: backup_postgresql
+postgresql_backup_gpg_opts: "--pinentry-mode loopback"
 postgresql_backup_profiles:
   - name: postgresql
     schedule: 0 1 * * *
@@ -33,3 +34,4 @@ postgresql_backup_profiles:
     user: "{{ postgresql_backup_system_user }}"
     gpg_key: "{{ postgresql_backup_gpg_key_id }}"
     gpg_pw:  "{{ postgresql_backup_gpg_pass }}"
+    gpg_opts: "{{ postgresql_backup_gpg_opts }}"
