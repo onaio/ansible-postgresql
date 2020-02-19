@@ -20,7 +20,7 @@ Dependencies
 
 - ANXS.postgresql
 - onaio.gpg-import
-- Stouts.backup
+- [onaio.backup](https://github.com/onaio/ansible-backup)
 
 Testing
 -------

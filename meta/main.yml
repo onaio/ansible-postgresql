@@ -26,7 +26,7 @@ dependencies:
       gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
     when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
 
-  - role: Stouts.backup
+  - role: onaio.backup
     vars:
       backup_cron_filename: "{{ postgresql_backup_cron_filename }}"
       backup_enabled: "{{ postgresql_backup_enabled }}"
