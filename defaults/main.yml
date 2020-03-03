@@ -14,11 +14,11 @@ postgresql_backup_import_gpg_keys: true
 # Backup
 # Need setting
 postgresql_backup_database:
-postgresql_backup_gpg_key_id: 
+postgresql_backup_gpg_key_id:
 postgresql_backup_gpg_pass:
 # Don't need setting
 # postgresql_backup_target_protocol can be 'file', 'ftp' and all
-# other protocols supported by https://github.com/Stouts/Stouts.backup
+# other protocols supported by https://github.com/onaio/ansible-backup
 postgresql_backup_target_protocol: "file"
 postgresql_backup_target_path: "/backups/postgresql"
 postgresql_backup_cron_filename: backup_postgresql
