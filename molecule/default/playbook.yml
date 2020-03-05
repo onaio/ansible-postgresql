@@ -6,6 +6,14 @@
       postgresql_backup_gpg_private_key: "priv.asc"
       postgresql_backup_gpg_public_key: "pub.asc"
       postgresql_backup_gpg_trust_file: "trust-ultimate.txt"
+      postgresql_users:
+        - name: "test"
+          pass: "myloginpass"
+          encrypted: true
+      postgresql_databases:
+        - name: "test"
+          owner: "test"      
       postgresql_backup_database: "test"
       postgresql_backup_gpg_key_id: "53329157"
       postgresql_backup_gpg_pass: "ansibleisawesome"
+      postgres_backup_gpg_opts: "{{ '' if ansible_lsb.major_release|int < 18 else '--pinentry-mode loopback' }}"
