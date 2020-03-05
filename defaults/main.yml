@@ -10,20 +10,25 @@ postgresql_backup_gpg_trust_file:
 postgresql_backup_system_user: "postgres"
 postgresql_backup_system_group: "postgres"
 postgresql_backup_import_gpg_keys: true
+postgres_backup_gpg_opts: "--pinentry-mode loopback"
 
 # Backup
 # Need setting
 postgresql_backup_database:
 postgresql_backup_gpg_key_id:
 postgresql_backup_gpg_pass:
+# When using S3, the user is the Access key ID and pass is the Secret
+postgresql_backup_target_user:
+postgresql_backup_target_pass:
 # Don't need setting
 # postgresql_backup_target_protocol can be 'file', 'ftp' and all
 # other protocols supported by https://github.com/onaio/ansible-backup
 postgresql_backup_target_protocol: "file"
 postgresql_backup_target_path: "/backups/postgresql"
 postgresql_backup_cron_filename: backup_postgresql
+postgresql_backup_target: "{{ postgresql_backup_target_protocol }}://{{ postgresql_backup_target_path }}"
 postgresql_backup_profiles:
-  - name: postgresql
+  - name: "{{ postgresql_backup_database }}"
     schedule: 0 1 * * *
     source: "postgresql://{{ postgresql_backup_database }}"
     target: "{{ postgresql_backup_target }}"
@@ -32,4 +37,5 @@ postgresql_backup_profiles:
     max_full_backups: 3
     user: "{{ postgresql_backup_system_user }}"
     gpg_key: "{{ postgresql_backup_gpg_key_id }}"
-    gpg_pw:  "{{ postgresql_backup_gpg_pass }}"
+    gpg_pw: "{{ postgresql_backup_gpg_pass }}"
+    gpg_opts: "{{ postgres_backup_gpg_opts }}"
