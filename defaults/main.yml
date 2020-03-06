@@ -26,7 +26,6 @@ postgresql_backup_target_pass:
 postgresql_backup_target_protocol: "file"
 postgresql_backup_target_path: "/backups/postgresql"
 postgresql_backup_cron_filename: backup_postgresql
-postgresql_backup_target: "{{ postgresql_backup_target_protocol }}://{{ postgresql_backup_target_path }}"
 postgresql_backup_profiles:
   - name: "{{ postgresql_backup_database }}"
     schedule: 0 1 * * *
