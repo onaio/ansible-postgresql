@@ -7,8 +7,8 @@
 - name: onaio.gpg-import
   src: https://github.com/onaio/ansible-gpg-import.git
   scm: git
-  version: bc17a23a028c7f71060882b5fbf3f1cf45bec645
+  version: master
 - role: onaio.backup
   src: https://github.com/onaio/ansible-backup.git
   scm: git
-  version: 63dddd5ca96cde008477875775455621e65db2bf
+  version: develop
