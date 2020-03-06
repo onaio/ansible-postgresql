@@ -12,7 +12,7 @@
           encrypted: true
       postgresql_databases:
         - name: "test"
-          owner: "test"      
+          owner: "test"
       postgresql_backup_database: "test"
       postgresql_backup_gpg_key_id: "53329157"
       postgresql_backup_gpg_pass: "ansibleisawesome"

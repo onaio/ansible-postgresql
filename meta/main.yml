@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Ona Tech
   description: Installs and configures PostgreSQL and a backup system
