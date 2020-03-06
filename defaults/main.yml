@@ -31,9 +31,9 @@ postgresql_backup_profiles:
     schedule: 0 1 * * *
     source: "postgresql://{{ postgresql_backup_database }}"
     target: "{{ postgresql_backup_target }}"
-    max_age: "3M"
-    full_max_age: "1W"
-    max_full_backups: 3
+    max_age: "1M" # Time frame for old backups to keep.
+    full_max_age: "1W" # forces a full backup if last full backup reaches a specified age
+    max_full_backups: 4 # Number of full backups to keep.
     user: "{{ postgresql_backup_system_user }}"
     gpg_key: "{{ postgresql_backup_gpg_key_id }}"
     gpg_pw: "{{ postgresql_backup_gpg_pass }}"
