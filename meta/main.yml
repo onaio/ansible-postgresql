@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Ona Tech
   description: Installs and configures PostgreSQL and a backup system
@@ -15,20 +16,3 @@ galaxy_info:
 
 dependencies:
   - role: ANXS.postgresql
-
-  - role: onaio.gpg-import
-    vars:
-      gpg_user: "{{ postgresql_backup_system_user }}"
-      gpg_group: "{{ postgresql_backup_system_group }}"
-      gpg_private_key: "{{ postgresql_backup_gpg_private_key }}"
-      gpg_private_key_passphrase: "{{ postgresql_backup_gpg_pass }}"
-      gpg_public_key: "{{ postgresql_backup_gpg_public_key }}"
-      gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
-    when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
-
-  - role: onaio.backup
-    vars:
-      backup_cron_filename: "{{ postgresql_backup_cron_filename }}"
-      backup_enabled: "{{ postgresql_backup_enabled }}"
-      backup_profiles: "{{ postgresql_backup_profiles }}"
-    when: postgresql_backup_enabled

@@ -1,8 +1,14 @@
 ---
-- role: ANXS.postgresql
+# should be reverted to Upstream when https://github.com/ANXS/postgresql/pull/475 gets merged 🤞
+- name: ANXS.postgresql
+  src: https://github.com/onaio/postgresql.git
+  scm: git
+  version: 26493277bf692128bf70b9a2a50d4a32b6db23f4
 - name: onaio.gpg-import
   src: https://github.com/onaio/ansible-gpg-import.git
   scm: git
+  version: bc17a23a028c7f71060882b5fbf3f1cf45bec645
 - role: onaio.backup
   src: https://github.com/onaio/ansible-backup.git
   scm: git
+  version: 63dddd5ca96cde008477875775455621e65db2bf
