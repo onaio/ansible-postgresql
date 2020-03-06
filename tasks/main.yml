@@ -7,6 +7,16 @@
     group: "{{ postgresql_backup_system_group }}"
     mode: 0750
   when: postgresql_backup_enabled and postgresql_backup_target_protocol == "file"
+  tags:
+    - backup
+
+- name: Make sure all users can view files inside the backup directory's parent
+  file:
+    path: "{{ postgresql_backup_target_path | dirname }}"
+    mode: "a+x"
+  when: postgresql_backup_enabled and postgresql_backup_target_protocol == "file"
+  tags:
+    - backup
 
 - include_role:
     name: onaio.gpg-import
@@ -18,6 +28,8 @@
     gpg_public_key: "{{ postgresql_backup_gpg_public_key }}"
     gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
   when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
+  tags:
+    - backup
 
 - include_role:
     name: onaio.backup
@@ -28,3 +40,5 @@
     backup_target_user: "{{ postgresql_backup_target_user }}"
     backup_target_pass: "{{ postgresql_backup_target_pass }}"
   when: postgresql_backup_enabled
+  tags:
+    - backup
