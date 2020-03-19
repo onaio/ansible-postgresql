@@ -1,4 +1,6 @@
 ---
+postgresql_user_home: "/var/lib/postgresql"
+
 postgresql_backup_enabled: true
 
 # GPG Import
@@ -38,3 +40,5 @@ postgresql_backup_profiles:
     gpg_key: "{{ postgresql_backup_gpg_key_id }}"
     gpg_pw: "{{ postgresql_backup_gpg_pass }}"
     gpg_opts: "{{ postgres_backup_gpg_opts }}"
+    gpg_private_key_src: "{{ postgresql_backup_gpg_private_key }}"
+    gpg_public_key_src: "{{ postgresql_backup_gpg_public_key }}"
