@@ -28,6 +28,18 @@ postgresql_backup_target_pass:
 postgresql_backup_target_protocol: "file"
 postgresql_backup_target_path: "/backups/postgresql"
 postgresql_backup_cron_filename: backup_postgresql
+postgresql_backup_opsgenie_api_key:
+postgresql_backup_on_error_command: |
+  curl -X POST https://api.opsgenie.com/v2/alerts \
+      -H "Content-Type: application/json" \
+      -H "Authorization: GenieKey {{ postgresql_backup_opsgenie_api_key }}" \
+      -d \
+  '{
+      "message": "PostgreSQL backups in {{ inventory_hostname }} failing",
+      "alias": "backups-{{ inventory_hostname }}-postgres",
+      "description":"PostgreSQL backups in {{ inventory_hostname }} are currently not running.",
+      "priority":"P2"
+  }'
 postgresql_backup_profiles:
   - name: "{{ postgresql_backup_database }}"
     schedule: 0 1 * * *
@@ -42,3 +54,7 @@ postgresql_backup_profiles:
     gpg_opts: "{{ postgres_backup_gpg_opts }}"
     gpg_private_key_src: "{{ postgresql_backup_gpg_private_key }}"
     gpg_public_key_src: "{{ postgresql_backup_gpg_public_key }}"
+    post_actions:
+      - type: "command"
+        on_error:
+          command: "{{ postgresql_backup_on_error_command }}"
