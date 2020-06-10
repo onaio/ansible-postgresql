@@ -43,3 +43,24 @@
   when: postgresql_backup_enabled
   tags:
     - backup
+
+- include_role:
+    name: onaio.ssl-certificate
+  vars:
+    certificate_authority_key: "{{ postgresql_ssl_ca_key }}"
+    certificate_authority_cert: "{{  postgresql_ssl_ca_cert }}"
+    certificates_directory: "{{ postgresql_ssl_directory }}"
+    certificate_authority_key_filename: "{{ postgresql_ssl_ca_key_filename }}"
+    certificate_authority_cert_filename: "{{ postgresql_ssl_ca_cert_filename }}"
+    client_key_filename: "{{ postgresql_ssl_server_key_filename }}"
+    client_csr_filename: "{{ postgresql_ssl_server_csr_filename }}"
+    client_cert_filename: "{{ postgresql_ssl_server_cert_filename }}"
+    certificate_expiry_days: "{{ postgresql_ssl_server_cert_expiry_days }}"
+    certificate_attributes: "{{ postgresql_ssl_server_cert_subject }}"
+    certificates_system_owner: "postgres"
+    certificates_system_group: "postgres"
+    certificates_file_mode: 0700
+  when: postgresql_enable_ssl
+  tags:
+    - tls
+    - postgresql_tls
