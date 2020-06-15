@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   roles:
-    - role: postgresql
+    - role: ansible-postgresql
       postgresql_backup_gpg_private_key: "gpg/priv.asc"
       postgresql_backup_gpg_public_key: "gpg/pub.asc"
       postgresql_backup_gpg_trust_file: "gpg/trust-ultimate.txt"

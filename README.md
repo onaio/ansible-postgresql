@@ -1,4 +1,4 @@
-onaio - PostgreSQL [![Build Status](https://travis-ci.org/onaio/ansible-postgresql.svg?branch=master)](https://travis-ci.org/onaio/ansible-postgresql)
+onaio - PostgreSQL ![CI](https://github.com/onaio/ansible-postgresql/workflows/CI/badge.svg?master)
 =========
 
 Installs PostgreSQL and optionally configures encrypted backups.
