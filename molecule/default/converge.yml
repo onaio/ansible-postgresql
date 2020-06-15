@@ -2,10 +2,14 @@
 - name: Converge
   hosts: all
   roles:
-    - role: postgresql
-      postgresql_backup_gpg_private_key: "priv.asc"
-      postgresql_backup_gpg_public_key: "pub.asc"
-      postgresql_backup_gpg_trust_file: "trust-ultimate.txt"
+    - role: ansible-postgresql
+      postgresql_backup_gpg_private_key: "gpg/priv.asc"
+      postgresql_backup_gpg_public_key: "gpg/pub.asc"
+      postgresql_backup_gpg_trust_file: "gpg/trust-ultimate.txt"
+      postgresql_enable_ssl: true
+      postgresql_ssl_domain: "db.example.com"
+      postgresql_ssl_ca_key: "{{ lookup('file', 'ssl/root.key') }}"
+      postgresql_ssl_ca_cert: "{{ lookup('file', 'ssl/root.crt') }}"
       postgresql_users:
         - name: "molecule"
           pass: "myloginpass"

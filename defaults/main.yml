@@ -14,6 +14,27 @@ postgresql_backup_system_group: "postgres"
 postgresql_backup_import_gpg_keys: true
 postgres_backup_gpg_opts: "--pinentry-mode loopback"
 
+# TLS
+# How to create your root CA:
+#   openssl req -new -nodes -text -out root.csr \
+#     -keyout root.key -subj "/CN=root.yourdomain.com"
+#   chmod og-rwx root.key
+#   openssl x509 -req -in root.csr -text -days 3650 \
+#     -extfile /etc/ssl/openssl.cnf -extensions v3_ca \
+#     -signkey root.key -out root.crt
+postgresql_enable_ssl: true
+postgresql_ssl_domain: "" # The hostname/domain name to set as the common name in the TLS certificate
+postgresql_ssl_ca_key: ""
+postgresql_ssl_ca_cert: ""
+postgresql_ssl_directory: "{{ postgresql_home }}"
+postgresql_ssl_ca_key_filename: "postgresql-root.key"
+postgresql_ssl_ca_cert_filename: "postgresql-root.crt"
+postgresql_ssl_server_key_filename: "postgresql-server.key"
+postgresql_ssl_server_csr_filename: "postgresql-server.csr"
+postgresql_ssl_server_cert_filename: "postgresql-server.crt"
+postgresql_ssl_server_cert_expiry_days: 3650
+postgresql_ssl_server_cert_subject: "/CN={{ postgresql_ssl_domain }}"
+
 # Backup
 # Need setting
 postgresql_backup_database:

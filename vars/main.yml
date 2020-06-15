@@ -1,2 +1,12 @@
 ---
 postgresql_backup_target: "{{ postgresql_backup_target_protocol }}://{{ postgresql_backup_target_path }}"
+postgresql_ssl_cert_file: "{{ postgresql_ssl_directory }}/{{ postgresql_ssl_server_cert_filename }}"
+postgresql_ssl_key_file: "{{ postgresql_ssl_directory }}/{{ postgresql_ssl_server_key_filename }}"
+postgresql_ssl_ca_file: "{{ postgresql_ssl_directory }}/{{ postgresql_ssl_ca_cert_filename }}"
+postgresql_ssl: "{% if postgresql_enable_ssl %}on{% else %}off{% endif %}"
+postgresql_service_user: "postgres"
+postgresql_service_uid: 119
+postgresql_service_group: "postgres"
+postgresql_service_gid: 119
+postgresql_home: "/var/lib/postgresql"
+postgresql_shell: "/bin/bash"

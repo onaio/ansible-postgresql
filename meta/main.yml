@@ -14,5 +14,4 @@ galaxy_info:
     - postgresql
     - backup
 
-dependencies:
-  - role: ANXS.postgresql
+dependencies: []

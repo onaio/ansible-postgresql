@@ -18,25 +18,24 @@ def test_backups(host):
     # Create the database and insert data into it
     testString = "fddsafds test string fddadsfd"
     with host.sudo("postgres"):
-        host.run("psql -c 'create database test'")
         host.run(
-            "psql -c 'create table t1(c1 text null)' test"
+            "psql -c 'create table t1(c1 text null)' molecule"
         )
         host.run((
             "psql -c \"insert into t1(c1) values('" +
             testString +
-            "')\" test"
+            "')\" molecule"
         ))
 
     # Check if duply can backup and restore into a file
     # Don't use host.sudo() since it doesn't do sudo -i
     restorePath = "/tmp/test-restore.sql"
     # Full backup
-    assert host.run_expect([0], "sudo -i -u postgres duply postgresql backup")
+    assert host.run_expect([0], "sudo -i -u postgres duply molecule backup")
     # Incremental backup
-    assert host.run_expect([0], "sudo -i -u postgres duply postgresql backup")
+    assert host.run_expect([0], "sudo -i -u postgres duply molecule backup")
     assert host.run_expect([0], (
-        "sudo -i -u postgres duply postgresql restore " +
+        "sudo -i -u postgres duply molecule restore " +
         restorePath
     ))
 
