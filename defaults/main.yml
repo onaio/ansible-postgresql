@@ -26,12 +26,12 @@ postgresql_enable_ssl: true
 postgresql_ssl_domain: "" # The hostname/domain name to set as the common name in the TLS certificate
 postgresql_ssl_ca_key: ""
 postgresql_ssl_ca_cert: ""
-postgresql_ssl_directory: "/var/lib/postgresql"
-postgresql_ssl_ca_key_filename: "root.key"
-postgresql_ssl_ca_cert_filename: "root.crt"
-postgresql_ssl_server_key_filename: "server.key"
-postgresql_ssl_server_csr_filename: "server.csr"
-postgresql_ssl_server_cert_filename: "server.crt"
+postgresql_ssl_directory: "{{ postgresql_home }}"
+postgresql_ssl_ca_key_filename: "postgresql-root.key"
+postgresql_ssl_ca_cert_filename: "postgresql-root.crt"
+postgresql_ssl_server_key_filename: "postgresql-server.key"
+postgresql_ssl_server_csr_filename: "postgresql-server.csr"
+postgresql_ssl_server_cert_filename: "postgresql-server.crt"
 postgresql_ssl_server_cert_expiry_days: 3650
 postgresql_ssl_server_cert_subject: "/CN={{ postgresql_ssl_domain }}"
 

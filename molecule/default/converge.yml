@@ -7,7 +7,6 @@
       postgresql_backup_gpg_public_key: "gpg/pub.asc"
       postgresql_backup_gpg_trust_file: "gpg/trust-ultimate.txt"
       postgresql_enable_ssl: true
-      postgresql_ssl_directory: "/tmp/"
       postgresql_ssl_domain: "db.example.com"
       postgresql_ssl_ca_key: "{{ lookup('file', 'ssl/root.key') }}"
       postgresql_ssl_ca_cert: "{{ lookup('file', 'ssl/root.crt') }}"
