@@ -5,8 +5,6 @@ postgresql_ssl_key_file: "{{ postgresql_ssl_directory }}/{{ postgresql_ssl_serve
 postgresql_ssl_ca_file: "{{ postgresql_ssl_directory }}/{{ postgresql_ssl_ca_cert_filename }}"
 postgresql_ssl: "{{ postgresql_enable_ssl }}"
 postgresql_service_user: "postgres"
-postgresql_service_uid: 119
 postgresql_service_group: "postgres"
-postgresql_service_gid: 119
 postgresql_home: "/var/lib/postgresql"
 postgresql_shell: "/bin/bash"
