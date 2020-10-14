@@ -1,7 +1,16 @@
 ---
 - name: Converge
   hosts: all
+  pre_tasks:
+    - name: Install Python 3 from apt for Ansible
+      raw: test -e /usr/bin/python3 || (sudo apt -y update && sudo apt install -y python3-minimal)
+      register: output
+      changed_when: false
   roles:
+    - role: onaio.monit
+      slack_monit_endpoint: ""
+      monit_setup_mode: true
+      monit_scripts: ["monit"]
     - role: ansible-postgresql
       postgresql_backup_gpg_private_key: "gpg/priv.asc"
       postgresql_backup_gpg_public_key: "gpg/pub.asc"
