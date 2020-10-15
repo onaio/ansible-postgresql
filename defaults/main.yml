@@ -63,7 +63,7 @@ postgresql_backup_on_error_command: |
       "message": "PostgreSQL backups in {{ postgresql_backup_opsgenie_host_id }} failing",
       "alias": "backups-{{ postgresql_backup_opsgenie_host_id | hash('sha1') }}-postgres",
       "description":"PostgreSQL backups in {{ postgresql_backup_opsgenie_host_id }} are currently not running.",
-      "priority":"P2"
+      "priority":"P4"
   }'
 postgresql_backup_profiles:
   - name: "{{ postgresql_backup_database }}"
