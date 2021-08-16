@@ -44,3 +44,14 @@ def test_backups(host):
     assert restoreFile.exists
     assert restoreFile.is_file
     assert restoreFile.contains(testString)
+
+
+def test_health_monitors(host):
+    assert host.run_expect(
+        [0],
+        "/etc/monit/exec-scripts/postgresql-number-connections"
+    )
+    assert host.run_expect(
+        [0],
+        "/etc/monit/exec-scripts/postgresql-number-slow-queries"
+    )

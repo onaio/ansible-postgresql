@@ -16,3 +16,7 @@
   src: https://github.com/onaio/ansible-ssl-certificate.git
   scm: git
   version: master
+- role: onaio.monit
+  src: https://github.com/onaio/ansible-monit.git
+  scm: git
+  version: master

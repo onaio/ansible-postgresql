@@ -2,13 +2,11 @@
 - name: Make sure the PostgreSQL group exists
   group:
     name: "{{ postgresql_service_group }}"
-    gid: "{{ postgresql_service_gid }}"
     state: present
 
 - name: Make sure the PostgreSQL user exists
   user:
     name: "{{ postgresql_service_user }}"
-    uid: "{{ postgresql_service_uid }}"
     group: "{{ postgresql_service_group }}"
     home: "{{ postgresql_home }}"
     shell: "{{ postgresql_shell }}"
