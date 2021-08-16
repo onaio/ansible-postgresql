@@ -79,6 +79,7 @@
   vars:
     backup_cron_filename: "{{ postgresql_backup_cron_filename }}"
     backup_enabled: "{{ postgresql_backup_enabled }}"
+    backup_user: "{{ postgresql_backup_system_user }}"
     backup_profiles: "{{ postgresql_backup_profiles }}"
     backup_target_user: "{{ postgresql_backup_target_user }}"
     backup_target_pass: "{{ postgresql_backup_target_pass }}"
