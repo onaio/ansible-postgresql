@@ -74,6 +74,7 @@ postgresql_backup_profiles:
     full_max_age: "1W" # forces a full backup if last full backup reaches a specified age
     max_full_backups: 4 # Number of full backups to keep.
     user: "{{ postgresql_backup_system_user }}"
+    group: "{{ postgresql_backup_system_group }}"
     gpg_key: "{{ postgresql_backup_gpg_key_id }}"
     gpg_pw: "{{ postgresql_backup_gpg_pass }}"
     gpg_opts: "{{ postgres_backup_gpg_opts }}"

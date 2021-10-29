@@ -25,16 +25,21 @@
     client_cert_filename: "{{ postgresql_ssl_server_cert_filename }}"
     certificate_expiry_days: "{{ postgresql_ssl_server_cert_expiry_days }}"
     certificate_attributes: "{{ postgresql_ssl_server_cert_subject }}"
-    certificates_system_owner: "{{ postgresql_service_user }}"
-    certificates_system_group: "{{ postgresql_service_group }}"
+    certificates_system_owner: "postgres"
+    certificates_system_group: "postgres"
     certificates_file_mode: 0700
-  when: postgresql_enable_ssl
+  when: postgresql_enable_ssl|bool
   tags:
     - tls
     - postgresql_tls
 
 - include_role:
     name: ANXS.postgresql
+  vars:
+    postgresql_ext_postgis_deps:
+      - libgeos-c1v5
+      - "postgresql-{{ postgresql_version }}-postgis-{{ postgresql_ext_postgis_version }}"
+      - "postgresql-{{ postgresql_version }}-postgis-{{ postgresql_ext_postgis_version }}-scripts"
 
 - name: Make sure the backup directory exists
   file:
@@ -43,7 +48,7 @@
     owner: "{{ postgresql_backup_system_user }}"
     group: "{{ postgresql_backup_system_group }}"
     mode: 0750
-  when: postgresql_backup_enabled and postgresql_backup_target_protocol == "file"
+  when: postgresql_backup_enabled|bool and postgresql_backup_target_protocol == "file"
   tags:
     - backup
 
@@ -51,7 +56,7 @@
   file:
     path: "{{ postgresql_backup_target_path | dirname }}"
     mode: "a+x"
-  when: postgresql_backup_enabled and postgresql_backup_target_protocol == "file"
+  when: postgresql_backup_enabled|bool and postgresql_backup_target_protocol == "file"
   tags:
     - backup
 
@@ -65,7 +70,7 @@
     gpg_public_key: "{{ postgresql_backup_gpg_public_key }}"
     gpg_trust_file: "{{ postgresql_backup_gpg_trust_file }}"
     gpg_home: "{{ postgresql_user_home }}"
-  when: postgresql_backup_enabled and postgresql_backup_import_gpg_keys
+  when: postgresql_backup_enabled|bool and postgresql_backup_import_gpg_keys|bool
   tags:
     - backup
 
@@ -74,9 +79,10 @@
   vars:
     backup_cron_filename: "{{ postgresql_backup_cron_filename }}"
     backup_enabled: "{{ postgresql_backup_enabled }}"
+    backup_user: "{{ postgresql_backup_system_user }}"
     backup_profiles: "{{ postgresql_backup_profiles }}"
     backup_target_user: "{{ postgresql_backup_target_user }}"
     backup_target_pass: "{{ postgresql_backup_target_pass }}"
-  when: postgresql_backup_enabled
+  when: postgresql_backup_enabled|bool
   tags:
     - backup
