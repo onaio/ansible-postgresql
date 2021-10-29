@@ -25,8 +25,8 @@
     client_cert_filename: "{{ postgresql_ssl_server_cert_filename }}"
     certificate_expiry_days: "{{ postgresql_ssl_server_cert_expiry_days }}"
     certificate_attributes: "{{ postgresql_ssl_server_cert_subject }}"
-    certificates_system_owner: "postgres"
-    certificates_system_group: "postgres"
+    certificates_system_owner: "{{ postgresql_service_user }"
+    certificates_system_group: "{{ postgresql_service_group }"
     certificates_file_mode: 0700
   when: postgresql_enable_ssl|bool
   tags:
