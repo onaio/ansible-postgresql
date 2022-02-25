@@ -6,6 +6,12 @@
       raw: test -e /usr/bin/python3 || (sudo apt -y update && sudo apt install -y python3-minimal)
       register: output
       changed_when: false
+      when: ansible_facts['os_family'] == "Debian"
+    - name: Install Python 3 from yum for Ansible
+      raw: test -e python3 || (sudo yum update -y && sudo yum install -y python3)
+      register: output
+      changed_when: false
+      when: ansible_facts['os_family'] == "RedHat"
   roles:
     - role: onaio.monit
       slack_monit_endpoint: ""

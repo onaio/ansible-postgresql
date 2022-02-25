@@ -19,4 +19,4 @@
 - role: onaio.monit
   src: https://github.com/onaio/ansible-monit.git
   scm: git
-  version: master
+  version: redhat-changes
