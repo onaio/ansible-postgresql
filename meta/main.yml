@@ -18,7 +18,7 @@ dependencies:
   - role: onaio.monit
     monit_postgresql_system_user: "{{ postgresql_service_user }}"
     monit_scripts: ["postgres"]
-    monit_setup_mode: false
+    monit_setup_mode: "{{ postgresql_setup_monit }}"
     monit_postgresql_version: "{{ postgresql_version }}"
     monit_postgresql_listen_addresses: "{{ postgresql_listen_addresses }}"
     when: postgresql_configure_monit
