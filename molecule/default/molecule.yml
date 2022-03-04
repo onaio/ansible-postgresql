@@ -9,6 +9,10 @@ lint: |
   ansible-lint .
   flake8
 platforms:
+  - name: ansible-postgresql-ubuntu-16.04
+    image: solita/ubuntu-systemd:16.04
+  - name: ansible-postgresql-ubuntu-18.04
+    image: solita/ubuntu-systemd:18.04
   - name: ansible-postgresql-centos-7
     image: centos:7
     port_bindings: { 80: 80 }
@@ -20,7 +24,7 @@ platforms:
 scenario:
   name: default
   test_sequence:
-    #    - lint
+    - lint
     - destroy
     - dependency
     - syntax
