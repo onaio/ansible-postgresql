@@ -8,4 +8,4 @@
           - gpg
           - python3-psycopg2
         state: present
-      when: ansible_lsb.major_release|int > 16
+      when: ansible_facts['os_family'] == "Debian" and ansible_lsb.major_release|int > 16
