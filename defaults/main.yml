@@ -16,6 +16,7 @@ postgresql_backup_system_user: "postgres"
 postgresql_backup_system_group: "postgres"
 postgresql_backup_import_gpg_keys: true
 postgres_backup_gpg_opts: "--pinentry-mode loopback"
+postgresql_backup_temp_dir: /tmp
 
 # TLS
 # How to create your root CA:
