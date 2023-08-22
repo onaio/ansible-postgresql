@@ -83,6 +83,7 @@
     backup_profiles: "{{ postgresql_backup_profiles }}"
     backup_target_user: "{{ postgresql_backup_target_user }}"
     backup_target_pass: "{{ postgresql_backup_target_pass }}"
+    backup_temp_dir: "{{ postgresql_backup_temp_dir }}"
   when: postgresql_backup_enabled|bool
   tags:
     - backup
