@@ -88,3 +88,4 @@ postgresql_backup_profiles:
 
 # Monit
 postgresql_configure_monit: true # Whether to configure Monit
+monit_setup_mode: true

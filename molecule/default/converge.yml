@@ -9,7 +9,6 @@
   roles:
     - role: onaio.monit
       slack_monit_endpoint: ""
-      monit_setup_mode: true
       monit_scripts: ["monit"]
     - role: ansible-postgresql
       postgresql_backup_gpg_private_key: "gpg/priv.asc"
